@@ -38,7 +38,7 @@ const linebotParser = bot.parser();
 
 app.post('/linewebhook', linebotParser);
 
-// 當有人傳送訊息給Bot時
+// 當有人傳送訊息給Bot時，處理"訊息"事件
 bot.on('message', function (event) {
   console.log(event);
 
@@ -62,13 +62,25 @@ bot.on('message', function (event) {
     // event.message.text是使用者傳給bot的訊息
   // 使用event.reply(要回傳的訊息)方法可將訊息回傳給使用者
 
-  event.reply('沒錯! 就是'+ event.message.text + "!").then(function (data) {
-    // 當訊息成功回傳後的處理
-    console.log('Success', data);
-  }).catch(function (error) {
-    // 當訊息回傳失敗後的處理
-    console.log('Error', error);
-  });
+  if (event.message.text){
+    event.reply('沒錯! 就是'+ event.message.text + "!").then(function (data) {
+      console.log('Success', data);
+    }).catch(function (error) {
+      console.log('Error', error);
+    });
+  } else if (event.message.sticker){
+    event.reply({
+      type: 'sticker',
+      packageId: '11537',
+      stickerId: '52002734'
+    }).then(function (data) {
+      console.log('Success', data);
+    }).catch(function (error) {
+      console.log('Error', error);
+    });
+  }
+
+
 });
 
 
