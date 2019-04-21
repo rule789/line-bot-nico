@@ -41,13 +41,32 @@ app.post('/linewebhook', linebotParser);
 // 當有人傳送訊息給Bot時
 bot.on('message', function (event) {
   console.log(event);
+
+// { type: 'message',
+//   replyToken: '4d87d7da440f4c0ebbf5326979dac640',
+//   source:
+//   { userId: 'U05907e6c4214d59cf0be704fad0449ce',
+//     type: 'user',
+//     profile: [Function],
+//     member: [Function]
+//   },
+//   timestamp: 1555846956722,
+//   message:
+//   { type: 'text',
+//     id: '9731880187339',
+//     text: '2',
+//     content: [Function]
+//   },
+// reply: [Function] }
+
     // event.message.text是使用者傳給bot的訊息
   // 使用event.reply(要回傳的訊息)方法可將訊息回傳給使用者
-  event.reply('你說'+ event.message.text).then(function (data) {
-        // 當訊息成功回傳後的處理
+
+  event.reply('沒錯! 就是'+ event.message.text + "!").then(function (data) {
+    // 當訊息成功回傳後的處理
     console.log('Success', data);
   }).catch(function (error) {
-        // 當訊息回傳失敗後的處理
+    // 當訊息回傳失敗後的處理
     console.log('Error', error);
   });
 });
