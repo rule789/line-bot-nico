@@ -62,13 +62,13 @@ bot.on('message', function (event) {
     // event.message.text是使用者傳給bot的訊息
   // 使用event.reply(要回傳的訊息)方法可將訊息回傳給使用者
 
-  if (event.message.text){
+  if (event.message.type == 'text'){
     event.reply('沒錯! 就是'+ event.message.text + "!").then(function (data) {
       console.log('Success', data);
     }).catch(function (error) {
       console.log('Error', error);
     });
-  } else if (event.message.sticker){
+  } else if (event.message.type == 'sticker'){
     event.reply({
       type: 'sticker',
       packageId: '11537',
